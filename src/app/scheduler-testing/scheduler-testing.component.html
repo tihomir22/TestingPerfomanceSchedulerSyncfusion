@@ -1,0 +1,89 @@
+<div id="{{ renderID }}" class="h-100 detras">
+  <ejs-schedule
+    #scheduleObj
+    width="100%"
+    height="600px"
+    [group]="group"
+    [rowAutoHeight]="rowAutoHeight"
+    [(selectedDate)]="selectedDate"
+    [eventSettings]="eventSettings"
+    [allowMultiRowSelection]="'false'"
+    [(currentView)]="currentView"
+    [allowResizing]="'true'"
+  >
+    <e-resources>
+      <e-resource
+        field="resourceId"
+        title="Centros de trabajo"
+        [dataSource]="columnasNivel1"
+        [allowMultiple]="allowMultiple"
+        name="CentrosTrabajo"
+        textField="text"
+        idField="id"
+        colorField="color"
+      ></e-resource>
+    </e-resources>
+    <e-header-rows>
+      <e-header-row option="Year"></e-header-row>
+      <e-header-row option="Month"></e-header-row>
+      <e-header-row option="Week"></e-header-row>
+      <e-header-row option="Date"></e-header-row>
+      <e-header-row option="Hour"></e-header-row>
+    </e-header-rows>
+
+    <ng-template #resourceHeaderTemplate let-data>
+      <div>
+        <strong class="text-secondary">{{
+          getColumnDataResourceData(data, "text", "label")
+        }}</strong>
+      </div>
+      <div>
+        Horas capacidad
+        {{ getColumnDataResourceData(data, "role", "sublabel") }}
+      </div>
+    </ng-template>
+
+    <e-views>
+      <e-view
+        option="TimelineDay"
+        [interval]="currentInterval"
+        [allowVirtualScrolling]="virtualscroll"
+      >
+      </e-view>
+      <e-view
+        option="TimelineWeek"
+        [interval]="currentInterval"
+        [allowVirtualScrolling]="virtualscroll"
+      >
+      </e-view>
+      <e-view
+        option="TimelineMonth"
+        [interval]="currentInterval"
+        [allowVirtualScrolling]="virtualscroll"
+      >
+      </e-view>
+      <e-view
+        option="TimelineMonth"
+        [interval]="currentInterval"
+        [displayName]="'Trimestral'"
+        [allowVirtualScrolling]="virtualscroll"
+      >
+      </e-view>
+      <e-view
+        option="TimelineMonth"
+        [interval]="currentInterval"
+        [displayName]="'Semestral'"
+        [allowVirtualScrolling]="virtualscroll"
+      >
+      </e-view>
+      <e-view
+        option="TimelineMonth"
+        [interval]="currentInterval"
+        [displayName]="'Anual'"
+        [allowVirtualScrolling]="virtualscroll"
+      >
+      </e-view>
+      <e-view option="Agenda" [allowVirtualScrolling]="virtualscroll"></e-view>
+    </e-views>
+  </ejs-schedule>
+</div>
